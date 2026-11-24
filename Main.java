@@ -1,0 +1,70 @@
+void main() {
+
+    System.out.print("PIN-i i ri (4 shifra): ");
+    String pin = IO.readln().trim();
+
+    if (pin.length() == 4) {
+
+        if (pin.matches("[0-9]{4}")) {
+
+            int numri = Integer.parseInt(pin);
+
+            if (pin.equals("1234") ||
+                    pin.equals("0000") ||
+                    pin.equals("1111") ||
+                    pin.equals("1212")) {
+
+                System.out.println(
+                        "I dobët: ky PIN provohet i pari."
+                );
+
+            } else {
+
+                int pike = 0;
+
+                if (numri < 1950 || numri > 2026) {
+                    pike++;
+                }
+
+                if (pin.charAt(0) != pin.charAt(1)) {
+                    pike++;
+                }
+
+                if (pin.charAt(2) != pin.charAt(3)) {
+                    pike++;
+                }
+
+                // Switch qe jep vlere
+                var niveli = switch (pike) {
+                    case 3 -> "I fortë";
+                    case 2 -> "Mesatar";
+                    default -> "I dobët";
+                };
+
+                double perqindja = (pike / 3.0) * 100;
+
+                System.out.printf(
+                        "%s: %.2f %%\n",
+                        niveli, perqindja
+                );
+
+                // Operatori ternar
+                String rezultati = (pike == 3)
+                        ? "PIN-i pranohet."
+                        : "Zgjidhni PIN tjetër.";
+
+                System.out.println(rezultati);
+            }
+
+        } else {
+            System.out.println(
+                    "Gabim: PIN-i duhet të ketë vetëm shifra!"
+            );
+        }
+
+    } else {
+        System.out.println(
+                "Gabim: PIN-i duhet të ketë saktësisht 4 shifra!"
+        );
+    }
+}
