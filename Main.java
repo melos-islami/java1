@@ -12,13 +12,21 @@ void main() {
             if (pin.equals("1234") ||
                     pin.equals("0000") ||
                     pin.equals("1111") ||
-                    pin.equals("1212")) {
+                    pin.equals("1212") ||
+                    pin.equals("2580") ||
+                    pin.equals("4321")) {
 
                 System.out.println(
                         "I dobët: ky PIN provohet i pari."
                 );
 
             } else {
+
+
+                    System.out.println(
+                            "Kujdes: disa sisteme e heqin 0-n në fillim."
+                    );
+                }
 
                 int pike = 0;
 
