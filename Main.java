@@ -1,78 +1,83 @@
-void main() {
+import java.util.Scanner;
 
-    System.out.print("PIN-i i ri (4 shifra): ");
-    String pin = IO.readln().trim();
+public class Main {
 
-    if (pin.length() == 4) {
+    public static void main(String[] args) {
 
-        if (pin.matches("[0-9]{4}")) {
+        Scanner input = new Scanner(System.in);
 
-            int numri = Integer.parseInt(pin);
+        System.out.print("PIN-i i ri (4 shifra): ");
+        String pin = input.nextLine().trim();
 
-            if (pin.equals("1234") ||
+        if (pin.length() == 4) {
+
+            if (pin.matches("[0-9]{4}")) {
+
+                int numri = Integer.parseInt(pin);
+
+                if (pin.equals("1234") ||
                     pin.equals("0000") ||
                     pin.equals("1111") ||
                     pin.equals("1212") ||
                     pin.equals("2580") ||
                     pin.equals("4321")) {
 
-                System.out.println(
+                    System.out.println(
                         "I dobët: ky PIN provohet i pari."
-                );
+                    );
 
-            } else {
-
+                } else {
 
                     System.out.println(
-                            "Kujdes: disa sisteme e heqin 0-n në fillim."
+                        "Kujdes: disa sisteme e heqin 0-n në fillim."
                     );
-                }
 
-                int pike = 0;
+                    int pike = 0;
 
-                if (numri < 1950 || numri > 2026) {
-                    pike++;
-                }
+                    if (numri < 1950 || numri > 2026) {
+                        pike++;
+                    }
 
-                if (pin.charAt(0) != pin.charAt(1)) {
-                    pike++;
-                }
+                    if (pin.charAt(0) != pin.charAt(1)) {
+                        pike++;
+                    }
 
-                if (pin.charAt(2) != pin.charAt(3)) {
-                    pike++;
-                }
+                    if (pin.charAt(2) != pin.charAt(3)) {
+                        pike++;
+                    }
 
-                // Switch qe jep vlere
-                var niveli = switch (pike) {
-                    case 3 -> "I fortë";
-                    case 2 -> "Mesatar";
-                    default -> "I dobët";
-                };
+                    var niveli = switch (pike) {
+                        case 3 -> "I fortë";
+                        case 2 -> "Mesatar";
+                        default -> "I dobët";
+                    };
 
-                double perqindja = (pike / 3.0) * 100;
+                    double perqindja = (pike / 3.0) * 100;
 
-                System.out.printf(
+                    System.out.printf(
                         "%s: %.2f %%\n",
                         niveli, perqindja
-                );
+                    );
 
-                // Operatori ternar
-                String rezultati = (pike == 3)
+                    String rezultati = (pike == 3)
                         ? "PIN-i pranohet."
                         : "Zgjidhni PIN tjetër.";
 
-                System.out.println(rezultati);
+                    System.out.println(rezultati);
+                }
+
+            } else {
+                System.out.println(
+                    "Gabim: PIN-i duhet të ketë vetëm shifra!"
+                );
             }
 
         } else {
             System.out.println(
-                    "Gabim: PIN-i duhet të ketë vetëm shifra!"
+                "Gabim: PIN-i duhet të ketë saktësisht 4 shifra!"
             );
         }
 
-    } else {
-        System.out.println(
-                "Gabim: PIN-i duhet të ketë saktësisht 4 shifra!"
-        );
+        input.close();
     }
 }
